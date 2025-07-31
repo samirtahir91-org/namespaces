@@ -1,9 +1,14 @@
-name: Rebase Pull Requests
+name: Auto Rebase PRs on main update
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+
 jobs:
   rebase:
     runs-on: ubuntu-latest
     steps:
-      - uses: linhbn123/rebase-pull-requests@v1.0.1
+      - uses: peter-evans/rebase@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
